@@ -6,7 +6,7 @@ const Projects = () => {
     {projectName: "WEATHER APP", projectData: "This project is a weather app built with HTML, CSS, and JavaScript displays current weather information based on user location or input", techStack: ["GIT"], link: "https://github.com/NikhileshBisht/weather-site"},
     {projectName: "CHAT-GPT", projectData: " The ChatGPT Clone project utilizes the 3.5 Turbo version of the ChatGPT model as its backend, enabling it to operate within the VS Code environment ", techStack: ["GIT"], link: "https://github.com/NikhileshBisht/chatGPT"},
     {projectName: "ROCK-PAPER-SCISSOR", projectData: "The Rock, Paper, Scissors game implemented with HTML, CSS, and JavaScript provides an interactive way for users to play the classic hand game against a computer opponent.", techStack: ["GIT"], link: "https://github.com/NikhileshBisht/ROCK-paper-sciss-"},
-    {projectName: "THOUGH-SHARE", projectData: "The ThoughtShare project allows users to share their thoughts by entering their username and thought into a form. Upon submission, the data is stored in a Firebase Realtime Database, enabling seamless sharing seamless sharing and retrieval of thoughts in real-time.", techStack: ["GIT"], link: "#projects"},
+    {projectName: "THOUGH-SHARE", projectData: "The ThoughtShare project allows users to share their thoughts by entering their username and thought into a form. Upon submission, the data is stored in a Firebase Realtime Database, enabling seamless sharing seamless sharing and retrieval of thoughts in real-time.", techStack: ["GIT"], link: "https://github.com/NikhileshBisht/Thoughtshare"},
     {projectName: "Coming Soon", projectData: "This project will come soon", techStack: [], link: "#projects"}
   ]
     
