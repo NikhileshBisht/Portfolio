@@ -3,7 +3,6 @@ import Navbar from '@/components/Navbar';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
-import Services from '@/components/Services';
 import Home from '@/components/Home';
 import Head from 'next/head';
 import { MdArrowUpward } from "react-icons/md";
@@ -20,7 +19,6 @@ export default function HomePage() {
       <Navbar />
       <Home />
       <About />
-      <Services />
       <Projects />
       <Contact />
       <Footer />
