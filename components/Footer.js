@@ -24,7 +24,7 @@ export default function Footer() {
             <Link href={"https://www.youtube.com/channel/UCkogP6r2VVK1eYuboXKmBLw"} target="blank">
                 <FaYoutube  className="hover:scale-125 duration-300" />
             </Link>
-            <Link href={"https://www.instagram.com/nikhilesh105754/?hl=en"} target="blank">
+            <Link href={"https://www.instagram.com/9teeskido_o/?hl=en"} target="blank">
                 <FaInstagram className="hover:scale-125 duration-300" />
             </Link>
             </div>
