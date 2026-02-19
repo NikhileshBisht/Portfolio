@@ -25,7 +25,7 @@ export default function DeveloperAnimation() {
 
     return (
         <div className="flex items-center justify-center text-[#2d2e32] text-4xl md:text-6xl font-extrabold mt-4 px-4 relative h-32 w-full max-w-4xl mx-auto">
-            <span className="whitespace-pre">👨‍💻 Software&nbsp;</span>
+            <span className="whitespace-pre"> Software&nbsp;</span>
 
             <div className="relative inline-flex items-center justify-center">
                 {/* D */}

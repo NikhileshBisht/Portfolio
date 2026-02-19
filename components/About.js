@@ -1,15 +1,40 @@
+'use client'
 import Link from 'next/link'
 import React from 'react'
 import { FaCode } from 'react-icons/fa';
 import { IoDocumentText } from "react-icons/io5";
 import TechStack from './TechStack';
+import { useState } from 'react';
+import Terminal from './Terminal';
+import Chatbot from './Chatbot';
+import { FaRobot } from 'react-icons/fa';
 
 
 const About = () => {
+  const [showTerminal, setShowTerminal] = useState(false);
+  const [showChatbot, setShowChatbot] = useState(false);
+
+  if (showTerminal) {
+    return (
+      <div id='about' className='flex flex-col items-center justify-center py-20 w-full bg-[#111] min-h-screen overflow-x-hidden'>
+        <div className='w-[80%]'>
+          <button
+            onClick={() => setShowTerminal(false)}
+            className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors font-mono"
+          >
+            Close Terminal
+          </button>
+          <Terminal onClose={() => setShowTerminal(false)} />
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div id='about' className='flex flex-col items-center justify-center  py-20 w-screen bg-white'>
+    <div id='about' className='flex flex-col items-center justify-center py-20 w-full bg-white overflow-x-hidden'>
       <div className='flex md:flex-row flex-col-reverse w-[70%] justify-between md:space-x-10'>
         <div className='relative mx-auto mt-4'>
+          {/* Bot Animation Trigger */}
           <img className='hover:scale-105 duration-300 md:w-full w-[50%] mx-auto border-solid rounded-2xl border-5 ' src="pic2.jpeg" alt="picture" srcset="" />
           <div className='flex justify-evenly mt-4'>
             <Link href={'#contact'}>
@@ -19,15 +44,49 @@ const About = () => {
               </div>
             </Link>
 
-            <Link href={'https://docs.google.com/document/d/145XnfM2P0pFuAkHZXY_At8v3z4AG4tXmSm6fOdYiud4/edit?usp=sharing'} target='_blank'>
+            <a href="/Nikhilesh Bisht Resume.pdf" download="Nikhilesh Bisht Resume.pdf">
               <div className="font-mono hover:scale-105 duration-300 flex items-center justify-evenly space-x-2 md:h-10 px-2 py-1 border-solid rounded-md bg-[#2d2e32] text-white">
                 <IoDocumentText />
                 <p>Resume</p>
               </div>
-            </Link>
+            </a>
           </div>
         </div>
-        <div className='flex flex-col justify-evenly'>
+        <div className='flex flex-col justify-evenly relative'>
+          {/* Bot Animation Triggers */}
+          <div className="absolute top-0 right-0 z-10 flex gap-4">
+            {/* Terminal Bot */}
+            <div
+              className="cursor-pointer animate-bounce"
+              onClick={() => setShowTerminal(true)}
+            >
+              <div className="relative">
+                <div className="bg-white border-2 border-black rounded-xl p-2 mb-2 shadow-lg absolute -top-12 -left-32 w-max opacity-100 transition-opacity duration-300">
+                  <p className="text-xs font-bold font-mono">Terminal Mode</p>
+                  <div className="absolute -bottom-2 right-4 w-4 h-4 bg-white border-b-2 border-r-2 border-black transform rotate-45"></div>
+                </div>
+                <div className="bg-red-500 p-3 rounded-full shadow-xl hover:scale-110 transition-transform duration-300 border-2 border-white">
+                  <FaRobot className="text-white text-2xl" />
+                </div>
+              </div>
+            </div>
+            {/* AI Chatbot */}
+            <div
+              className="cursor-pointer animate-bounce"
+              onClick={() => setShowChatbot(true)}
+              style={{ animationDelay: '0.5s' }}
+            >
+              <div className="relative">
+                <div className="bg-white border-2 border-black rounded-xl p-2 mb-2 shadow-lg absolute -top-12 -right-32 w-max opacity-100 transition-opacity duration-300">
+                  <p className="text-xs font-bold font-mono">AI Chatbot</p>
+                  <div className="absolute -bottom-2 left-4 w-4 h-4 bg-white border-b-2 border-l-2 border-black transform rotate-45"></div>
+                </div>
+                <div className="bg-blue-500 p-3 rounded-full shadow-xl hover:scale-110 transition-transform duration-300 border-2 border-white">
+                  <FaRobot className="text-white text-2xl" />
+                </div>
+              </div>
+            </div>
+          </div>
           <div>
             <p className='text-[#555555] text-lg md:text-xl font-semibold mt-4 italic'>Who I am</p>
             <p className='text-[#2d2e32] text-4xl font-extrabold' >About /-</p>
@@ -39,6 +98,12 @@ const About = () => {
       {/* Skills */}
       {/* Skills */}
       <TechStack />
+      {showChatbot && (
+        <Chatbot 
+          onClose={() => setShowChatbot(false)}
+          modelProvider="ollama"
+        />
+      )}
     </div>
   )
 }

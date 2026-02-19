@@ -8,18 +8,18 @@ const Experience = () => {
 
     const experiences = [
         {
-            role: "Web Developer",
-            company: "modern men life",
-            companyUrl: "https://modernmenlife.com", // Placeholder URL
-            duration: "May 2024 - Aug 2025",
-            description: "Developed and maintained dynamic website features using PHP and MySQL. Implemented content and layout updates for blog and social media sections to improve user engagement.Worked on backend database operations, data handling, and performance optimization"
-        },
-        {
             role: "Software Developer",
             company: "Polestar Analytics",
             companyUrl: "https://www.polestaranalytics.com/", // Placeholder URL
             duration: "Oct 2024 - Dec 2025",
             description: "Developed and optimized a B2B analytics SaaS platform by building scalable frontend and backend features, enhancing data governance modules, and improving performance through architectural refactoring and API optimizations."
+        },
+        {
+            role: "Web Developer",
+            company: "modern men life",
+            companyUrl: "https://modernmenlife.com", // Placeholder URL
+            duration: "May 2024 - Aug 2025",
+            description: "Developed and maintained dynamic website features using PHP and MySQL. Implemented content and layout updates for blog and social media sections to improve user engagement.Worked on backend database operations, data handling, and performance optimization"
         }
     ];
 
@@ -34,7 +34,10 @@ const Experience = () => {
     };
 
     return (
-        <div id="experience" className="w-full py-10 bg-[#f3f3f3] flex flex-col items-center justify-center space-y-10">
+        <div
+        id="experience"
+        className="w-full py-10 bg-[#f3f3f3] flex flex-col items-center justify-center space-y-10 rounded-tl-[100px] rounded-br-[100px]"
+      >
             <div className='flex flex-col mx-auto'>
                 <p className='text-md md:text-4xl mx-auto text-[black] rounded-full font-mono px-2 py-1 md:px-8 md:py-4 my-4'>Experience</p>
             </div>

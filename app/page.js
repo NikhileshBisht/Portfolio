@@ -5,13 +5,14 @@ import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Home from '@/components/Home';
 import Experience from '@/components/Experience';
+import TechnicalSkills from '@/components/TechnicalSkills';
 import Head from 'next/head';
 import { MdArrowUpward } from "react-icons/md";
 import Link from 'next/link';
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Head>
         <title>Nikhilesh</title>
         <meta name="keywords" content="Portfolio" />
@@ -21,6 +22,7 @@ export default function HomePage() {
       <Home />
       <About />
       <Experience />
+      <TechnicalSkills />
       <Projects />
       <Contact />
       <Footer />

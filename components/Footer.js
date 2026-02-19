@@ -21,7 +21,7 @@ export default function Footer() {
                 <FiGithub className="hover:scale-125 duration-300" />
             </Link>
  
-            <Link href={"https://www.youtube.com/channel/UCkogP6r2VVK1eYuboXKmBLw"} target="blank">
+            <Link href={"https://www.youtube.com/@NikhileshBisht-y5c"} target="blank">
                 <FaYoutube  className="hover:scale-125 duration-300" />
             </Link>
             <Link href={"https://www.instagram.com/9teeskido_o/?hl=en"} target="blank">
