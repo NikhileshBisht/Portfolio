@@ -5,30 +5,12 @@ import { FaCode } from 'react-icons/fa';
 import { IoDocumentText } from "react-icons/io5";
 import TechStack from './TechStack';
 import { useState } from 'react';
-import Terminal from './Terminal';
 import Chatbot from './Chatbot';
 import { FaRobot } from 'react-icons/fa';
 
 
 const About = () => {
-  const [showTerminal, setShowTerminal] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
-
-  if (showTerminal) {
-    return (
-      <div id='about' className='flex flex-col items-center justify-center py-20 w-full bg-[#111] min-h-screen overflow-x-hidden'>
-        <div className='w-[80%]'>
-          <button
-            onClick={() => setShowTerminal(false)}
-            className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors font-mono"
-          >
-            Close Terminal
-          </button>
-          <Terminal onClose={() => setShowTerminal(false)} />
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div id='about' className='flex flex-col items-center justify-center py-20 w-full bg-white overflow-x-hidden'>
@@ -53,28 +35,11 @@ const About = () => {
           </div>
         </div>
         <div className='flex flex-col justify-evenly relative'>
-          {/* Bot Animation Triggers */}
-          <div className="absolute top-0 right-0 z-10 flex gap-4">
-            {/* Terminal Bot */}
-            <div
-              className="cursor-pointer animate-bounce"
-              onClick={() => setShowTerminal(true)}
-            >
-              <div className="relative">
-                <div className="bg-white border-2 border-black rounded-xl p-2 mb-2 shadow-lg absolute -top-12 -left-32 w-max opacity-100 transition-opacity duration-300">
-                  <p className="text-xs font-bold font-mono">Terminal Mode</p>
-                  <div className="absolute -bottom-2 right-4 w-4 h-4 bg-white border-b-2 border-r-2 border-black transform rotate-45"></div>
-                </div>
-                <div className="bg-red-500 p-3 rounded-full shadow-xl hover:scale-110 transition-transform duration-300 border-2 border-white">
-                  <FaRobot className="text-white text-2xl" />
-                </div>
-              </div>
-            </div>
-            {/* AI Chatbot */}
+          {/* AI Chatbot Trigger */}
+          <div className="absolute top-0 right-0 z-10">
             <div
               className="cursor-pointer animate-bounce"
               onClick={() => setShowChatbot(true)}
-              style={{ animationDelay: '0.5s' }}
             >
               <div className="relative">
                 <div className="bg-white border-2 border-black rounded-xl p-2 mb-2 shadow-lg absolute -top-12 -right-32 w-max opacity-100 transition-opacity duration-300">
