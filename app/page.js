@@ -17,15 +17,13 @@ export default function HomePage() {
         <title>Nikhilesh</title>
         <meta name="keywords" content="Portfolio" />
         <link rel="icon" href="/favicon-32x32.png" />
-      </Head>
-      <Navbar />
+      </Head> 
       <Home />
       <About />
-      <Experience />
+      {/* <Experience />
       <TechnicalSkills />
       <Projects />
-      <Contact />
-      <Footer />
+      <Contact /> */} 
     </div>
   );
 }

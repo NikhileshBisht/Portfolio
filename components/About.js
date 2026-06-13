@@ -17,7 +17,7 @@ const About = () => {
       <div className='flex md:flex-row flex-col-reverse w-[70%] justify-between md:space-x-10'>
         <div className='relative mx-auto mt-4'>
           {/* Bot Animation Trigger */}
-          <img className='hover:scale-105 duration-300 md:w-full w-[50%] mx-auto border-solid rounded-2xl border-5 ' src="pic2.jpeg" alt="picture" srcset="" />
+          <img className='hover:scale-105 duration-300 md:w-full w-[50%] mx-auto border-solid rounded-2xl border-5 ' src="pic2.jpeg" alt="picture" srcSet="" />
           <div className='flex justify-evenly mt-4'>
             <Link href={'#contact'}>
               <div className="font-mono hover:scale-105 duration-300 flex items-center justify-evenly space-x-2 md:h-10 border-solid px-2 py-1 rounded-md bg-[#2d2e32] text-white mr-1 ml-[-1rem]">
@@ -41,15 +41,7 @@ const About = () => {
               className="cursor-pointer animate-bounce"
               onClick={() => setShowChatbot(true)}
             >
-              <div className="relative">
-                <div className="bg-white border-2 border-black rounded-xl p-2 mb-2 shadow-lg absolute -top-12 -right-32 w-max opacity-100 transition-opacity duration-300">
-                  <p className="text-xs font-bold font-mono">AI Chatbot</p>
-                  <div className="absolute -bottom-2 left-4 w-4 h-4 bg-white border-b-2 border-l-2 border-black transform rotate-45"></div>
-                </div>
-                <div className="bg-blue-500 p-3 rounded-full shadow-xl hover:scale-110 transition-transform duration-300 border-2 border-white">
-                  <FaRobot className="text-white text-2xl" />
-                </div>
-              </div>
+              <FaRobot className="text-white text-2xl" />
             </div>
           </div>
           <div>

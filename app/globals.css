@@ -32,3 +32,18 @@
       transform: translateX(-50%);
     }
   }
+
+
+  @keyframes skillTrain {
+    0% {
+      transform: translateX(100%);
+    }
+  
+    100% {
+      transform: translateX(-120%);
+    }
+  }
+  
+  .skill-train {
+    animation: skillTrain 35s linear infinite;
+  }

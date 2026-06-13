@@ -1,5 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import FloatingActions from "@/components/FloatingActions";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +14,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="overflow-x-hidden">
-      <body className={`${inter.className} overflow-x-hidden`}>{children}</body>
+      <body
+        className={`${inter.className} overflow-x-hidden min-h-screen flex flex-col`}
+      >
+        <Navbar />
+
+        <main className="flex-1">
+          {children}
+        </main>
+
+        <FloatingActions />
+        <Footer />
+      </body>
     </html>
   );
 }
