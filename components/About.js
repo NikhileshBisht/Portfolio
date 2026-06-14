@@ -48,7 +48,7 @@ const About = () => {
             <p className='text-[#555555] text-lg md:text-xl font-semibold mt-4 italic'>Who I am</p>
             <p className='text-[#2d2e32] text-4xl font-extrabold' >About /-</p>
           </div>
-          <p className='text-[#555555] text-2xl md:text-3xl font-bold'>Hi, I'm a Software Engineer  from 🌍 Delhi, India.</p>
+          <p className='text-[#555555] text-2xl md:text-3xl font-bold'>Hi, I'm a Software Engineer from Delhi, India.</p>
           <p className='text-[#555555] text-sm md:text-lg'>I’m a tech enthusiast who thrives on challenges — the harder the problem, the more motivated I get to solve it. I love exploring new technologies, building cool things, and constantly pushing my limits. Beyond tech, I’m also a passionate gamer and streamer, and a big fan of sports. Whether it’s coding, gaming, or cheering for a great match, I’m always excited to stay active and keep learning.</p>
         </div>
       </div>
@@ -56,7 +56,7 @@ const About = () => {
       {/* Skills */}
       <TechStack />
       {showChatbot && (
-        <Chatbot 
+        <Chatbot
           onClose={() => setShowChatbot(false)}
           modelProvider="ollama"
         />

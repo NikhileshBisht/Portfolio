@@ -1,11 +1,11 @@
-import Navbar from '@/components/Navbar';
 import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import Formdd from '@/components/Form';
 
 export default function ContactPage() {
   return (
     <>
       <Contact />
+      <Formdd />
     </>
   );
 }

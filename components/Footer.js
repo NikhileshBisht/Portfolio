@@ -11,7 +11,6 @@ import { SiUpwork } from "react-icons/si";
 export default function Footer() {
     return(
         <div className="bg-[#2d2e32] flex flex-col sm:flex-row justify-center sm:justify-evenly h-[20vh] items-center w-full">
-            <div className="text-white font-extrabold" >Copyright © 2024. All rights are reserved</div>
             <div className="flex text-white space-x-4 text-2xl">
             {/* <Connect /> */}
             <Link href={"https://www.linkedin.com/in/nikhilesh-bisht-407670228/"} target="blank">

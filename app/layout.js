@@ -1,8 +1,18 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import dynamic from "next/dynamic";
+
 import FloatingActions from "@/components/FloatingActions";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+
+const Ballpit = dynamic(
+  () => import("@/components/Ballpit"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,18 +23,28 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="overflow-x-hidden">
+    <html lang="en">
       <body
-        className={`${inter.className} overflow-x-hidden min-h-screen flex flex-col`}
+        className={`${inter.className} min-h-screen flex flex-col relative overflow-x-hidden`}
       >
+        {/* Background */}
+        <div className="fixed inset-0 -z-10" style={{ width: '100vw', height: '100vh' }}>
+          <Ballpit
+            className="w-full h-full"
+            followCursor={true}
+            count={120}
+            colors={[0x3b82f6, 0x8b5cf6, 0x06b6d4]}
+          />
+        </div>
+
         <Navbar />
 
-        <main className="flex-1">
+        <main className="flex-1 relative z-10">
           {children}
         </main>
 
         <FloatingActions />
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

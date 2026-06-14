@@ -1,293 +1,162 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+// SAFE + STABLE ICON PACKS
+import {
+  SiHtml5,
+  SiCss,
+  SiJavascript,
+  SiTypescript,
+  SiPython,
+  SiReact,
+  SiNextdotjs,
+  SiAngular,
+  SiNodedotjs,
+  SiRedux,
+  SiTailwindcss,
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
+  SiDocker,
+  SiGit,
+  SiLinux,
+  SiJira,
+} from "react-icons/si";
+
+import { VscVscode } from "react-icons/vsc";
+
+import {
+  FaCode,
+  FaNetworkWired,
+  FaCubes,
+  FaServer,
+} from "react-icons/fa";
 
 const skills = [
-  { title: 'Languages',     items: ['C++', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'Python'] },
-  { title: 'Frameworks',    items: ['React.js', 'Next.js', 'Angular', 'Node.js', 'Express.js', 'Redux', 'Tailwind CSS'] },
-  { title: 'Core Concepts', items: ['DSA', 'Networking', 'OOP'] },
-  { title: 'Databases',     items: ['PostgreSQL', 'MySQL', 'MongoDB'] },
-  { title: 'Tools',         items: ['Docker', 'Git', 'Linux', 'VS Code', 'Jira', 'Azure Boards'] },
+  {
+    title: "Languages",
+    items: [
+      { name: "C++", icon: FaCode },
+      { name: "HTML", icon: SiHtml5 },
+      { name: "CSS", icon: SiCss },
+      { name: "JavaScript", icon: SiJavascript },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Python", icon: SiPython },
+    ],
+  },
+  {
+    title: "Frameworks",
+    items: [
+      { name: "React.js", icon: SiReact },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "Angular", icon: SiAngular },
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "Express.js", icon: FaServer },
+      { name: "Redux", icon: SiRedux },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+    ],
+  },
+  {
+    title: "Core Concepts",
+    items: [
+      { name: "DSA", icon: FaCode },
+      { name: "Networking", icon: FaNetworkWired },
+      { name: "OOP", icon: FaCubes },
+    ],
+  },
+  {
+    title: "Databases",
+    items: [
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "MySQL", icon: SiMysql },
+      { name: "MongoDB", icon: SiMongodb },
+    ],
+  },
+  {
+    title: "Tools",
+    items: [
+      { name: "Docker", icon: SiDocker },
+      { name: "Git", icon: SiGit },
+      { name: "Linux", icon: SiLinux },
+      { name: "VS Code", icon: VscVscode },
+      { name: "Jira", icon: SiJira },
+    ],
+  },
 ];
 
-/* ─────────────────────────────────────────────────────
-   Stick figure — faces RIGHT, walks forward, 
-   right arm stretched FORWARD (pulling rope ahead of it)
-───────────────────────────────────────────────────── */
-function StickFigure() {
-  return (
-    <motion.div
-      animate={{
-        x: [0, -2, 0],
-      }}
-      transition={{
-        duration: 0.8,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      }}
-      style={{
-        flexShrink: 0,
-        width: 90,
-        height: 110,
-      }}
-    >
-      <svg width="90" height="110" viewBox="0 0 90 110">
-        {/* Head */}
-        <circle
-          cx="25"
-          cy="20"
-          r="10"
-          stroke="#2d2e32"
-          strokeWidth="3"
-          fill="none"
-        />
-
-        {/* Leaning body */}
-        <line
-          x1="25"
-          y1="30"
-          x2="42"
-          y2="70"
-          stroke="#2d2e32"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-
-        {/* Pulling arms */}
-        <line
-          x1="36"
-          y1="45"
-          x2="85"
-          y2="40"
-          stroke="#2d2e32"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-
-        <line
-          x1="38"
-          y1="48"
-          x2="85"
-          y2="44"
-          stroke="#2d2e32"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-
-        {/* Front support leg */}
-        <motion.line
-          x1="42"
-          y1="70"
-          x2="60"
-          y2="100"
-          stroke="#2d2e32"
-          strokeWidth="3"
-          strokeLinecap="round"
-          animate={{
-            x2: [60, 55, 60],
-          }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-          }}
-        />
-
-        {/* Rear pushing leg */}
-        <motion.line
-          x1="42"
-          y1="70"
-          x2="15"
-          y2="100"
-          stroke="#2d2e32"
-          strokeWidth="3"
-          strokeLinecap="round"
-          animate={{
-            x2: [15, 20, 15],
-          }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-          }}
-        />
-
-        {/* Foot */}
-        <line
-          x1="10"
-          y1="100"
-          x2="25"
-          y2="100"
-          stroke="#2d2e32"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-
-        <line
-          x1="55"
-          y1="100"
-          x2="70"
-          y2="100"
-          stroke="#2d2e32"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-      </svg>
-    </motion.div>
-  );
-}
-
-/* ─────────────────────
-   Animated wavy rope
-───────────────────── */
-function Rope() {
-  return (
-    <svg
-      width="50"
-      height="20"
-      viewBox="0 0 50 20"
-      fill="none"
-      style={{
-        flexShrink: 0,
-        alignSelf: 'center',
-        marginBottom: '6px',
-      }}
-    >
-      <motion.path
-        stroke="#2d2e32"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        fill="none"
-        animate={{
-          d: [
-            'M0 10 Q12 8 25 10 Q38 12 50 10',
-            'M0 10 Q12 2 25 10 Q38 18 50 10',
-            'M0 10 Q12 8 25 10 Q38 12 50 10',
-          ],
-        }}
-        transition={{
-          duration: 0.5,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-    </svg>
-  );
-}
-
-/* ─────────────
-   Skill card
-───────────── */
-function SkillCard({ title, items }) {
-  return (
-    <div
-      style={{ flexShrink: 0, width: '200px' }}
-      className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4"
-    >
-      <h3 className="text-[#2d2e32] font-bold text-xs mb-3 tracking-widest uppercase">
-        {title}
-      </h3>
-      <div className="flex flex-wrap gap-1.5">
-        {items.map((item) => (
-          <span key={item} className="px-2 py-0.5 text-xs bg-[#2d2e32] text-white rounded-md">
-            {item}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════
-   Main export
-   
-   HOW THE LOOP WORKS:
-   - trainWidth  = total pixel width of figure + ropes + cards
-   - The train starts at x = containerWidth (fully off-screen RIGHT)
-   - It moves to x = -trainWidth (fully off-screen LEFT)
-   - Then instantly resets back to x = containerWidth → repeat
-   - This creates an infinite left-to-right conveyor illusion
-═══════════════════════════════════════════════════════ */
 export default function TechnicalSkills() {
-  const sectionRef   = useRef(null);
-  const containerRef = useRef(null);
-  const controls     = useAnimation();
-  const inView       = useInView(sectionRef, { once: false, margin: '0px 0px -80px 0px' });
-
-  // Approx train width: figure(60) + 5 ropes(50*5) + 5 cards(200*5) + gaps
-  const TRAIN_W   = 60 + 5 * 50 + 5 * 200 + 40; // ~1400px
-  const DURATION  = 14; // seconds to cross the screen — slower = heavier feel
+  const [index, setIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (!inView) {
-      controls.stop();
-      return;
-    }
+    if (isPaused) return;
 
-    const container = containerRef.current;
-    const viewW = container ? container.offsetWidth : 900;
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % skills.length);
+    }, 4000);
 
-    async function runLoop() {
-      // Jump to start (off-screen right) instantly
-      await controls.set({ x: viewW });
-      // Animate to off-screen left
-      await controls.start({
-        x: -TRAIN_W,
-        transition: { duration: DURATION, ease: 'linear' },
-      });
-      // Loop
-      runLoop();
-    }
-
-    runLoop();
-
-    return () => controls.stop();
-  }, [inView, controls]);
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="w-full py-20 bg-[#f5f5f5]"
-      style={{ overflow: 'hidden' }}
-    >
-      <div className="w-[90%] mx-auto">
-
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-[#2d2e32] text-4xl font-extrabold mb-10"
-        >
+    <section className="w-full py-20 px-4 bg-[#f5f5f5]">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-[#2d2e32] text-3xl sm:text-4xl font-extrabold text-center mb-12">
           Technical Skills
-        </motion.h2>
+        </h2>
 
-        {/* Container — needed to measure viewport width */}
-        <div ref={containerRef} style={{ position: 'relative' }}>
+        <div
+          className="relative min-h-[320px] flex justify-center items-center overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ x: 300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -300, opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-8"
+            >
+              <h3 className="text-2xl font-bold text-[#2d2e32] mb-8 text-center">
+                {skills[index].title}
+              </h3>
 
-          {/* Ground line */}
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-[#2d2e32] opacity-15" />
+              <div className="flex flex-wrap justify-center gap-4">
+                {skills[index].items.map((item) => {
+                  const Icon = item.icon;
 
-          {/* ── THE TRAIN ── */}
-          <motion.div
-            animate={controls}
-            style={{ display: 'flex', alignItems: 'flex-end', gap: 0, paddingBottom: '8px', width: 'max-content' }}
-          >
-            {/* Figure */}
-            <StickFigure />
+                  return (
+                    <div
+                      key={item.name}
+                      className="flex items-center gap-2 px-4 py-3 bg-[#2d2e32] text-white rounded-full text-sm sm:text-base hover:scale-105 transition duration-300"
+                    >
+                      <span className="text-lg sm:text-xl">
+                        <Icon />
+                      </span>
+                      <span>{item.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-            {/* Rope from figure to first card */}
-            <Rope />
-
-            {/* Cards with ropes between them */}
-            {skills.map((skill, i) => (
-              <React.Fragment key={skill.title}>
-                <SkillCard title={skill.title} items={skill.items} />
-                {i < skills.length - 1 && <Rope />}
-              </React.Fragment>
-            ))}
-          </motion.div>
-
+        <div className="flex justify-center gap-3 mt-8">
+          {skills.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`h-3 w-3 rounded-full transition-all duration-300 ${i === index
+                ? "bg-black scale-125"
+                : "bg-gray-400 hover:bg-gray-600"
+                }`}
+            />
+          ))}
         </div>
       </div>
     </section>
