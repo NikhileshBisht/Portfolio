@@ -101,14 +101,15 @@ export default function TechnicalSkills() {
   }, [isPaused]);
 
   return (
-    <section className="w-full py-20 px-4 bg-[#f5f5f5]">
+    <section className="w-full py-20 px-4 bg-transparent">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-[#2d2e32] text-3xl sm:text-4xl font-extrabold text-center mb-12">
+        <h2 className="text-[#2d2e32] text-3xl sm:text-4xl font-extrabold text-center ">
           Technical Skills
         </h2>
 
         <div
-          className="relative min-h-[320px] flex justify-center items-center overflow-hidden"
+          className="relative min-h-[250px] flex justify-center items-center overflow-hidden"
+          style={{ marginTop: "25px" }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -119,7 +120,7 @@ export default function TechnicalSkills() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -300, opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-8"
+              className="w-full max-w-2xl bg-white rounded-tl-3xl rounded-tr-3xl shadow-xl p-8"
             >
               <h3 className="text-2xl font-bold text-[#2d2e32] mb-8 text-center">
                 {skills[index].title}

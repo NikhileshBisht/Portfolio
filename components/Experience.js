@@ -36,7 +36,7 @@ const Experience = () => {
     return (
         <div
         id="experience"
-        className="w-full py-10 bg-[#f3f3f3] flex flex-col items-center justify-center space-y-10 rounded-tl-[100px] rounded-br-[100px]"
+        className="w-full py-10 bg-transparent flex flex-col items-center justify-center space-y-10 rounded-tl-[100px] rounded-br-[100px]"
       >
             <div className='flex flex-col mx-auto'>
                 <p className='text-md md:text-4xl mx-auto text-[black] rounded-full font-mono px-2 py-1 md:px-8 md:py-4 my-4'>Experience</p>

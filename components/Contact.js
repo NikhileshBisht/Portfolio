@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="bg-[#f9f9f9] w-full py-16 px-6 md:px-12"
+      className="bg-transparent w-full py-16 px-6 md:px-12"
     >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 md:gap-20 items-start justify-between">
 

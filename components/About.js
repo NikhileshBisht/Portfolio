@@ -13,7 +13,7 @@ const About = () => {
   const [showChatbot, setShowChatbot] = useState(false);
 
   return (
-    <div id='about' className='flex flex-col items-center justify-center py-20 w-full bg-white overflow-x-hidden'>
+    <div id='about' className='flex flex-col items-center justify-center py-10 w-full bg-[#f3f3f3] overflow-x-hidden'>
       <div className='flex md:flex-row flex-col-reverse w-[70%] justify-between md:space-x-10'>
         <div className='relative mx-auto mt-4'>
           {/* Bot Animation Trigger */}
@@ -37,12 +37,6 @@ const About = () => {
         <div className='flex flex-col justify-evenly relative'>
           {/* AI Chatbot Trigger */}
           <div className="absolute top-0 right-0 z-10">
-            <div
-              className="cursor-pointer animate-bounce"
-              onClick={() => setShowChatbot(true)}
-            >
-              <FaRobot className="text-white text-2xl" />
-            </div>
           </div>
           <div>
             <p className='text-[#555555] text-lg md:text-xl font-semibold mt-4 italic'>Who I am</p>

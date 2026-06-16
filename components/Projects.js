@@ -13,7 +13,7 @@ const Projects = () => {
   ]
 
   return (
-    <div id='projects' className='bg-white h-full p-10 w-full flex flex-col items-center justify-evenly overflow-x-hidden'>
+    <div id='projects' className='bg-transparent h-full p-10 w-full flex flex-col items-center justify-evenly overflow-x-hidden'>
       <div className='flex flex-col justify-evenly w-[70%]'>
         <p className='text-[#2d2e32] text-4xl font-extrabold' >Projects</p>
       </div>

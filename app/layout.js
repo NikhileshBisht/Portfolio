@@ -1,18 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
 
-import FloatingActions from "@/components/FloatingActions";
-import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-
-const Ballpit = dynamic(
-  () => import("@/components/Ballpit"),
-  {
-    ssr: false,
-    loading: () => null,
-  }
-);
+import FloatingActions from "@/components/FloatingActions";
+import FloatingLines from "@/components/FloatingLines";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,15 +18,28 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} min-h-screen flex flex-col relative overflow-x-hidden`}
       >
-        {/* Background */}
-        <div className="fixed inset-0 -z-10" style={{ width: '100vw', height: '100vh' }}>
-          <Ballpit
-            className="w-full h-full"
-            followCursor={true}
-            count={120}
-            colors={[0x3b82f6, 0x8b5cf6, 0x06b6d4]}
+        {/* FloatingLines Background */}
+        {/* <div style={{
+          width: '100%',
+          height: '600px',
+          position: 'relative',
+          background: '#ffffff'   // ← white lives here, not in shader
+        }}>
+          <FloatingLines
+            enabledWaves={["top", "middle", "bottom"]}
+            lineCount={11}
+            lineDistance={12}
+            bendRadius={3}
+            bendStrength={-2}
+            interactive
+            parallax={true}
+            animationSpeed={1}
+            gradientStart="#2563eb"
+            gradientMid="#7c3aed"
+            gradientEnd="#e879f9"
+            mixBlendMode="screen"   // ← screen on white = lines visible, black = transparent
           />
-        </div>
+        </div> */}
 
         <Navbar />
 
@@ -44,7 +48,6 @@ export default function RootLayout({ children }) {
         </main>
 
         <FloatingActions />
-        {/* <Footer /> */}
       </body>
     </html>
   );

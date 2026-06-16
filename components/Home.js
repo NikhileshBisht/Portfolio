@@ -15,7 +15,7 @@ import Connect from './Connect';
 
 const Home = () => {
   return (
-    <div className='flex flex-col items-center justify-evenly md:h-[70vh] h-[70vh] bg-[#f3f3f3] space-y-10'>
+    <div className='flex flex-col items-center justify-evenly md:h-[70vh] h-[70vh] bg-transparent space-y-10'>
       <div className='flex md:flex-row flex-col-reverse w-[70%] justify-between md:space-x-10'>
         <div className='flex flex-col justify-evenly space-y-4'>
           <DeveloperAnimation />
