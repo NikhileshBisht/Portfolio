@@ -1,0 +1,16 @@
+{
+    "name": "Nikhilesh Bisht",
+    "skills": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "C++"
+    ],
+    "education": "B.Tech CSE",
+    "projects": [
+        {
+            "name": "Portfolio Website",
+            "description": "Built with Next.js"
+        }
+    ]
+}

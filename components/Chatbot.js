@@ -1,17 +1,24 @@
-'use client'
-import React, { useState, useRef, useEffect } from 'react';
-import { FaRobot, FaTimes, FaPaperPlane, FaSpinner } from 'react-icons/fa';
+"use client";
 
-const Chatbot = ({ onClose, modelProvider = 'ollama' }) => {
+import React, { useState, useRef, useEffect } from "react";
+import {
+  FaRobot,
+  FaTimes,
+  FaPaperPlane,
+  FaSpinner,
+} from "react-icons/fa";
+
+export default function Chatbot({ onClose }) {
   const [messages, setMessages] = useState([
     {
-      role: 'assistant',
-      content: 'Hello! I\'m an AI assistant powered by open-source models. How can I help you today?'
-    }
+      role: "assistant",
+      content:
+        "👋 Hi! I'm Nikhilesh's AI assistant. Ask me about my projects, skills, education, or experience.",
+    },
   ]);
-  const [input, setInput] = useState('');
+
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -20,111 +27,142 @@ const Chatbot = ({ onClose, modelProvider = 'ollama' }) => {
   }, []);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
   }, [messages]);
 
   const handleSend = async (e) => {
     e.preventDefault();
+
     if (!input.trim() || isLoading) return;
 
-    const userMessage = { role: 'user', content: input.trim() };
-    setMessages(prev => [...prev, userMessage]);
-    setInput('');
+    const userMessage = {
+      role: "user",
+      content: input.trim(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+
+    const currentMessage = input;
+    setInput("");
     setIsLoading(true);
-    setError(null);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
+      const res = await fetch("/api/chat", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: userMessage.content,
-          provider: modelProvider,
-          history: messages.slice(-5) // Keep last 5 messages for context
+          message: currentMessage,
+          history: messages.slice(-5),
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(
+          data.error || "Failed to get response"
+        );
       }
 
-      const data = await response.json();
-      
-      if (data.error) {
-        throw new Error(data.error);
-      }
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: data.reply,
+        },
+      ]);
+    } catch (error) {
+      console.error(error);
 
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: data.response
-      }]);
-    } catch (err) {
-      setError(err.message);
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: `Sorry, I encountered an error: ${err.message}. Please make sure Ollama is running and the model is installed.`
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            "Sorry, something went wrong. Please try again.",
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-[#1a1a1a] rounded-lg shadow-2xl w-full max-w-2xl h-[80vh] flex flex-col border border-gray-700">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-[#111] border border-gray-800 rounded-3xl shadow-2xl w-full max-w-2xl h-[80vh] flex flex-col overflow-hidden">
+
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
+        <div className="flex items-center justify-between p-5 border-b border-gray-800">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-500 p-2 rounded-full">
-              <FaRobot className="text-white text-xl" />
+            <div className="bg-blue-600 p-3 rounded-full">
+              <FaRobot className="text-white text-lg" />
             </div>
+
             <div>
-              <h2 className="text-white font-bold text-lg">AI Chatbot</h2>
+              <h2 className="text-white font-bold text-lg">
+                Ask Nikhilesh
+              </h2>
+
               <p className="text-gray-400 text-xs">
-                Powered by {modelProvider === 'ollama' ? 'Ollama (LLaMA/Mistral)' : 'Hugging Face'}
+                Powered by Gemini AI
               </p>
             </div>
           </div>
+
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-400 hover:text-white"
           >
-            <FaTimes className="text-xl" />
+            <FaTimes size={20} />
           </button>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-5 space-y-4">
+
+          <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 text-sm text-gray-300">
+            <p className="font-semibold mb-2">
+              Ask me about:
+            </p>
+
+            <div className="grid grid-cols-2 gap-2">
+              <span>• Projects</span>
+              <span>• Skills</span>
+              <span>• Education</span>
+              <span>• Experience</span>
+            </div>
+          </div>
+
           {messages.map((msg, idx) => (
             <div
               key={idx}
-              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+              className={`flex ${msg.role === "user"
+                ? "justify-end"
+                : "justify-start"
+                }`}
             >
               <div
-                className={`max-w-[80%] rounded-lg p-3 ${
-                  msg.role === 'user'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-700 text-gray-100'
-                }`}
+                className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm ${msg.role === "user"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-800 text-gray-100"
+                  }`}
               >
-                <p className="whitespace-pre-wrap break-words">{msg.content}</p>
+                <p className="whitespace-pre-wrap break-words">
+                  {msg.content}
+                </p>
               </div>
             </div>
           ))}
-          
+
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-gray-700 rounded-lg p-3">
-                <FaSpinner className="animate-spin text-gray-400" />
+              <div className="bg-gray-800 p-3 rounded-2xl">
+                <FaSpinner className="animate-spin text-white" />
               </div>
-            </div>
-          )}
-
-          {error && (
-            <div className="bg-red-900 bg-opacity-50 border border-red-500 rounded-lg p-3 text-red-200 text-sm">
-              {error}
             </div>
           )}
 
@@ -132,21 +170,25 @@ const Chatbot = ({ onClose, modelProvider = 'ollama' }) => {
         </div>
 
         {/* Input */}
-        <form onSubmit={handleSend} className="p-4 border-t border-gray-700">
+        <form
+          onSubmit={handleSend}
+          className="p-4 border-t border-gray-800"
+        >
           <div className="flex gap-2">
             <input
               ref={inputRef}
               type="text"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              className="flex-1 bg-gray-800 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={isLoading}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask something..."
+              className="flex-1 bg-gray-900 text-white rounded-xl px-4 py-3 border border-gray-700 focus:border-blue-500 focus:outline-none"
             />
+
             <button
               type="submit"
-              disabled={isLoading || !input.trim()}
-              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-6 py-2 rounded-lg transition-colors flex items-center gap-2"
+              disabled={!input.trim() || isLoading}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 text-white px-5 rounded-xl transition"
             >
               {isLoading ? (
                 <FaSpinner className="animate-spin" />
@@ -159,6 +201,4 @@ const Chatbot = ({ onClose, modelProvider = 'ollama' }) => {
       </div>
     </div>
   );
-};
-
-export default Chatbot;
+}
